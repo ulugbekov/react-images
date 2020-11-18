@@ -2,7 +2,6 @@
 // @jsx glam
 import React from 'react';
 import glam from 'glam';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { Div, Img } from '../primitives';
 import { type PropsWithStyles } from '../types';
@@ -24,31 +23,55 @@ export const viewCSS = () => ({
 
 const viewBaseClassName = componentBaseClassNames.View;
 
-const View = (props: Props) => {
-  const { data, formatters, getStyles, index, isFullscreen, isModal } = props;
-  const innerProps = {
-    alt: formatters.getAltText({ data, index }),
-    src: getSource({ data, isFullscreen }),
-  };
+class View extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Div
-      css={getStyles(viewBaseClassName, props)}
-      className={className(viewBaseClassName, { isFullscreen, isModal })}
-    >
-      <LazyLoadImage
-        className={className('view-image', { isFullscreen, isModal })}
-        effect="blur"
-        css={{
-          height: 'auto',
-          maxHeight: '100%',
-          maxWidth: '100%',
-          userSelect: 'none',
-        }}
-        {...innerProps}
-      />
-    </Div>
-  );
-};
+    this.state = {
+      loaded: false,
+    };
+  }
+
+  render() {
+    const { loaded } = this.state;
+    const {
+      data,
+      formatters,
+      getStyles,
+      index,
+      isFullscreen,
+      isModal,
+      loadingView,
+    } = this.props;
+    const innerProps = {
+      alt: formatters.getAltText({ data, index }),
+      src: getSource({ data, isFullscreen }),
+    };
+
+    return (
+      <Div
+        css={getStyles(viewBaseClassName, this.props)}
+        className={className(viewBaseClassName, { isFullscreen, isModal })}
+      >
+        {!loaded && loadingView}
+
+        <Img
+          {...innerProps}
+          className={className('view-image', { isFullscreen, isModal })}
+          onLoad={() => {
+            this.setState({ loaded: true });
+          }}
+          css={{
+            height: 'auto',
+            maxHeight: '100%',
+            maxWidth: '100%',
+            userSelect: 'none',
+            display: loaded ? 'block' : 'none',
+          }}
+        />
+      </Div>
+    );
+  }
+}
 
 export default View;

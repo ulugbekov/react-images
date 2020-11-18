@@ -73,6 +73,7 @@ export type CarouselProps = {
   },
   /* The items to render in the carousel */
   views: ViewsType,
+  loadingView: any,
 };
 
 export type CarouselState = {
@@ -372,7 +373,7 @@ class Carousel extends Component<CarouselProps, CarouselState> {
   render() {
     const { Container, View } = this.components;
     const { currentIndex } = this.state;
-    const { frameProps, views } = this.props;
+    const { frameProps, views, loadingView } = this.props;
     const commonProps = (this.commonProps = this.getCommonProps());
 
     return (
@@ -402,7 +403,12 @@ class Carousel extends Component<CarouselProps, CarouselState> {
                 views.map((data, index) => {
                   return (
                     <PageView className={className('view-wrapper')} key={index}>
-                      <View {...commonProps} data={data} index={index} />
+                      <View
+                        {...commonProps}
+                        data={data}
+                        index={index}
+                        loadingView={loadingView}
+                      />
                     </PageView>
                   );
                 })}
