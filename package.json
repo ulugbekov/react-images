@@ -1,19 +1,22 @@
 {
-  "name": "react-images",
+  "name": "@ulugbekov/react-images",
   "version": "1.1.7",
   "description": "A mobile-friendly, highly customizable, carousel component for displaying media in ReactJS",
   "main": "lib/index.js",
   "jsnext:main": "dist/react-images.es.js",
   "module": "dist/react-images.es.js",
   "types": "./index.d.ts",
-  "author": "Joss Mackison",
+  "author": "Alisher Ulugbekov",
   "repository": {
-    "url": "https://github.com/jossmac/react-images"
+    "url": "https://github.com/ulugbekov/react-images"
   },
   "bugs": {
-    "url": "https://github.com/jossmac/react-images/issues"
+    "url": "https://github.com/ulugbekov/react-images/issues"
   },
-  "homepage": "https://jossmac.github.io/react-images/",
+  "homepage": "https://ulugbekov.github.io/react-images/",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "license": "MIT",
   "keywords": [
     "react",
