@@ -1,6 +1,6 @@
 {
   "name": "@ulugbekov/react-images",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "A mobile-friendly, highly customizable, carousel component for displaying media in ReactJS",
   "main": "lib/index.js",
   "jsnext:main": "dist/react-images.es.js",
