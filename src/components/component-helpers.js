@@ -14,3 +14,11 @@ export function getThumbnail({ data }) {
 
   return source.thumbnail;
 }
+
+export function getLoadingSource({ data, isFullscreen }) {
+  const { loading } = data;
+
+  if (typeof loading === 'string') return loading;
+
+  return isFullscreen ? loading.fullscreen : loading.regular;
+}

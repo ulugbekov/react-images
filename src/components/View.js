@@ -2,6 +2,7 @@
 // @jsx glam
 import React from 'react';
 import glam from 'glam';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { Div, Img } from '../primitives';
 import { type PropsWithStyles } from '../types';
@@ -35,15 +36,16 @@ const View = (props: Props) => {
       css={getStyles(viewBaseClassName, props)}
       className={className(viewBaseClassName, { isFullscreen, isModal })}
     >
-      <Img
-        {...innerProps}
+      <LazyLoadImage
         className={className('view-image', { isFullscreen, isModal })}
+        effect="blur"
         css={{
           height: 'auto',
           maxHeight: '100%',
           maxWidth: '100%',
           userSelect: 'none',
         }}
+        {...innerProps}
       />
     </Div>
   );
